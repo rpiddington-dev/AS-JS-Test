@@ -1,0 +1,33 @@
+<!doctype html>
+<meta charset="utf-8">
+<link rel="stylesheet" href="css/paint.css">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.js"></script>
+
+<script src="js/utilities.js"></script>
+<script src="js/tools.js"></script>
+<script src="js/controls.js"></script>
+<script src="js/rightClickMenu.js"></script>
+<script src="js/main.js"></script>
+
+<HEAD>Accusoft Javascript Code Test</HEAD>
+<ul class='custom-menu'>
+  <li data-action="fill">Fill Background</li>
+  <li data-action="clear">Clear Canvas</li>
+</ul>
+
+<ul id="tabs">
+
+  <li><a class="tablink" onclick="openCanvas(event, 'tab1C')" id="tab1">Canvas 1</a></li>
+  <li><a class="tablink" onclick="openCanvas(event, 'tab2C')" id="tab2">Canvas 2</a></li>
+
+</ul>
+
+<div class="container" id="tab1C">canvas 1</div>
+<div class="container" id="tab2C">canvas 2</div>
+
+<body>
+  <script>
+    createPaint(document.body);
+  </script>
+</body>

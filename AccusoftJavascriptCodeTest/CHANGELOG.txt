@@ -1,0 +1,81 @@
+Changes to all pages are listed below:
+	-removed blank lines, adjusted spacing and indentation to improve readability on all pages
+
+Changes made to individual pages are listed below.
+
+controls.js {
+	-controlsModule.openFile
+		-Passed ‘cx’ through the function to identify the canvas
+		-Passed the event ‘e’ through the function to identify if target files exist and assign the file at index 0 to imageFile. The fileReader reads the imageFile as readAsDataURL, and the reader loads the loadImageURL function. The initial placement of the loadImageURL, and the missing ‘cx’ identifier caused openFile module not to open a file and display it on the canvas. 
+}
+
+main.js {
+    	-added function openCanvas to hide/display content based on the selected tab; when the application is opened, both tabs are hidden by default, and selection of a canvas by a tab will display the appropriate canvas
+
+}
+
+rightClickMenu.js {
+	-Wrapped ‘$(‘.custom-menu li’).click(function ’ in ‘$(document).ready(function’, which identifies when the menu is clicked
+	-Modified the cases to match the correct names in index.html and call the appropriate function assigned to the case.
+	-Removed unused menu and tabs methods.
+	-Added fillBackground function to add the red color to the canvas background when using the right-click feature
+	-Added the clearBackground function to remove any drawings or images on the canvas.
+}
+
+tools.js {
+	-_toolsModule.Erase - The following changes allowed the Erase feature to function correctly. The globalCompositeOperation() property had a syntax error that would not process the operation—the syntax error in executing the function _toolsModule.Line prevented the function from processing. 
+		-‘cx.globalCompositeoperation’ was changed to ‘cx.globalCompositeOperation’
+		-‘toolsModule.Line’ was changed to ‘_toolsModule.Line’
+	-_toolsModule.Text - The relativePos function does not require the utilities identifier.
+		-‘var pos = utilities.relativePos’ was changed to ‘var Pos = relativePos’
+}
+
+utilities.js {
+	-added semicolons to the end of all utilities functions to maintain consistency in the application
+    -loadImageURL 
+		-corrected canvas.width from ‘cx.canvas.width = image.height;’ to ‘cx.canvas.width = image.width;’
+		-drawImage method was missing a parameter ‘cx.drawImage(image, 0)’ was changed to ‘cx.drawImage(image, 0, 0)’
+}
+
+index.html {
+	-Custom-menu
+		-Changed data-action to the name used in the switch/case to execute the command
+	-Tabs
+		-Added a class, and onclick function to identify the selected tab, and display the appropriate canvas
+	-Script
+		-removed console.log(tools.getVersion()) because of a ReferenceError that would not allow other scripts to run correctly.
+}
+
+paint.css {
+	-removed unused/duplicated css, reorganized and grouped placement for elements, classes, and id’s
+    	-#tabs li a removed extra semicolon
+    	-added 'display: none;' to container to hide until a tab is selected
+	-added #tabs li.active to identify the active tab 
+     	-added background-color to #tabs li a:hover & a.active:hover and changed color to differentiate when not in :hover
+}
+
+--------------------------------------------------------------------------------------------------------------
+    Fix These Items:
+        1. Get the different Canvas tabs functional
+            -main.js
+                -added the openCanvas function to hide/display the appropriate canvas based on the selected tab
+            -index.html
+                -added onclick="openCanvas(event, canvasName)" to the tab to execute the function on click
+            -paint.css
+                -added css to '#tabs li a.active' to indicate the active tab
+
+        2. Fix the erase Tool
+            -modified cx.globalCompositeoperation to cx.globalCompositeOperation 
+            -modified _toolsModule.Line(event, cx, function () { to _toolsModule.Line(event, cx, function () 
+        3. Fix the Text Tool
+           -removed utilities from utilities.relativePos
+        4. Fix the Photo Upload Tool
+            -modified the loadImageURL function to correct syntax errors in image.width, and missing parameter in drawImage.
+
+    Right Click Functions
+        1. Fill Background
+           -Revised the custom-menu to include the correct term, which will trigger switch/case and execute the correct function.
+	-Added a function to change the background color to red.
+        2. Clear Background
+            -Revised the custom-menu to include the correct term, which will trigger switch/case and execute the correct function.
+	-Added a function to clear images or drawings from the background.
